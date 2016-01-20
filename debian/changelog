@@ -1,3 +1,9 @@
+firehol (2.0.4+ds-cf1) unstable; urgency=low
+
+  * New upstream version.
+
+ -- Andrey Galkin <andrey@futoin.org>  Thu, 21 Jan 2016 01:36:09 +0200
+
 firehol (2.0.3+ds-1) unstable; urgency=medium
 
   * New upstream version.
