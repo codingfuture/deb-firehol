@@ -26,10 +26,10 @@
 #
 
 get_version() {
-	GIT_REF=' (tag: v2.0.3, stable-v2),commit-8a7193d'
+	GIT_REF=' (tag: v2.0.4, stable-v2),commit-d3d7d52'
 	local IFS=":(), "
 	set -- "$GIT_REF"
-	ver='$Id: 7614dcf012f3cd717968a158d1db5ccd5fe676d4 $'
+	ver='$Id: d455d174bd7c9bcfb8d1e1ae92a7b570730389eb $'
 	for i in $@
 	do
 		case "$i" in
@@ -1646,6 +1646,7 @@ add_icmpv6_rule_pair_stateless() {
 	local type="${1}"; shift
 	local icmpv6in="${1}"; shift
 	local icmpv6out="${1}"; shift
+	local icmptype=""
 
 	local in=in
 	local out=out
@@ -1655,9 +1656,15 @@ add_icmpv6_rule_pair_stateless() {
 		out=in
 	fi
 
-	rule ${in} action "$@" chain "${in}_${mychain}" proto icmpv6 custom "--icmpv6-type $icmpv6in" || return 1
+	for icmptype in $icmpv6in
+	do
+		rule ${in} action "$@" chain "${in}_${mychain}" proto icmpv6 custom "--icmpv6-type $icmptype" || return 1
+	done
 
-	rule ${out} reverse action "$@" chain "${out}_${mychain}" proto icmpv6 custom "--icmpv6-type $icmpv6out" || return 1
+	for icmptype in $icmpv6out
+	do
+		rule ${out} reverse action "$@" chain "${out}_${mychain}" proto icmpv6 custom "--icmpv6-type $icmptype" || return 1
+	done
 
 	return 0
 }
@@ -2424,6 +2431,26 @@ rules_ipv6router() {
 	local status=0
 
 	add_icmpv6_rule_pair_stateless $mychain $type router-solicitation router-advertisement "$@" || status=1
+
+	pop_namespace
+	return $status
+}
+
+# --- IVP6MLD ------------------------------------------------------------------
+
+rules_ipv6mld() {
+	local 	mychain="${1}" \
+		type="${2}" \
+		status=0
+	shift 2
+
+	if ! push_namespace ipv6; then return 1; fi
+
+	# 130 	Multicast Listener Query
+	# 131 	Multicast Listener Report
+	# 132 	Multicast Listener Done
+	# 143 	Version 2 Multicast Listener Report
+	add_icmpv6_rule_pair_stateless $mychain $type "131 132 143" 130 "${@}" || status=1
 
 	pop_namespace
 	return $status
@@ -6982,6 +7009,7 @@ case "${arg}" in
 	explain)
 		test ! -z "${1}" && softwarning "Arguments after parameter '${arg}' are ignored."
 		firewall_policy_applied=1
+		firewall_policy6_applied=1
 		FIREHOL_MODE="EXPLAIN"
 		;;
 	
