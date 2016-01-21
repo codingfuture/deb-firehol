@@ -1,0 +1,21 @@
+From: Andrey Galkin <andrey@futoin.org>
+Date: Thu, 21 Jan 2016 06:46:24 +0200
+Subject: Fixed README.md dependency path
+
+---
+ Makefile.am | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Makefile.am b/Makefile.am
+index bb0d2b1..32b8079 100644
+--- a/Makefile.am
++++ b/Makefile.am
+@@ -21,7 +21,7 @@ if MAINTAINER_MODE
+ 
+ all-local: README
+ 
+-README: README.md
++README: doc/README.md
+ 	sed -e '/^Upgrade Notes$$/p' -e '/^Git$$/,/^Upgrade Notes$$/d' $< > $@
+ 
+ endif
