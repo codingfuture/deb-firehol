@@ -7,7 +7,7 @@ Build-Depends-Indep:
  libxml2-utils,
  texlive-base, texlive-latex-recommended, texlive-fonts-recommended, lmodern,
  pandoc,
- kmod, iptables, iproute2, procps
+ kmod, iptables, iproute2, procps, ipset, iprange
 Standards-Version: 3.9.6
 Homepage: http://firehol.org
 Vcs-Git: git://anonscm.debian.org/collab-maint/firehol.git
@@ -15,7 +15,7 @@ Vcs-Browser: http://anonscm.debian.org/gitweb/?p=collab-maint/firehol.git
 
 Package: firehol
 Architecture: all
-Depends: ${misc:Depends}, lsb-base, kmod, iptables, iproute2, tcpdump, procps
+Depends: ${misc:Depends}, lsb-base, kmod, iptables, iproute2, tcpdump, procps, ipset, iprange
 Recommends: fireqos (= ${binary:Version})
 Suggests: firehol-doc (= ${binary:Version}), ulogd2
 Description: easy to use but powerful iptables stateful firewall (program)
@@ -47,7 +47,7 @@ Description: easy to use but powerful iptables stateful firewall (docs)
 
 Package: fireqos
 Architecture: all
-Depends: ${misc:Depends}, lsb-base, kmod, iproute2, tcpdump, procps
+Depends: ${misc:Depends}, lsb-base, kmod, iproute2, tcpdump, procps, ipset, iprange
 Recommends: firehol (= ${binary:Version})
 Suggests: fireqos-doc (= ${binary:Version})
 Description: easy to use but powerful traffic shaping tool (program)

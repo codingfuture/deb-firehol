@@ -60,16 +60,18 @@ cd "${UPSTREAM_ROOTFOLDER}"
 
 ####. "${REPACK_WORKING_FOLDER}/debian/repack.local"
 ## mimic maintainer-clean
-rm --verbose --force --recursive -- doc/firehol/man/man5
-rm --verbose --force --recursive -- doc/fireqos/man/man5
-rm --verbose --force --recursive -- doc/firehol/man/man1
-rm --verbose --force --recursive -- doc/fireqos/man/man1
+rm --verbose --force --recursive -- doc/firehol/man/man?
+rm --verbose --force --recursive -- doc/fireqos/man/man?
+rm --verbose --force --recursive -- doc/vnetbuild/man/man?
 rmdir --verbose --ignore-fail-on-non-empty -- doc/firehol/man
 rmdir --verbose --ignore-fail-on-non-empty -- doc/fireqos/man
+rmdir --verbose --ignore-fail-on-non-empty -- doc/vnetbuild/man
 rm --verbose --force -- doc/firehol/firehol-manual.html
 rm --verbose --force -- doc/fireqos/fireqos-manual.html
 rm --verbose --force -- doc/firehol/firehol-manual.pdf
 rm --verbose --force -- doc/fireqos/fireqos-manual.pdf
+rm --verbose --force -- doc/vnetbuild/vnetbuild-manual.html
+rm --verbose --force -- doc/vnetbuild/vnetbuild-manual.pdf
 ## clean up extra maintainer generated material
 rm --verbose --force -- doc/firehol/firehol-services.5.md
 rm --verbose --force -- doc/service-links
