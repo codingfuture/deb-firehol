@@ -10,8 +10,8 @@ Build-Depends-Indep:
  kmod, iptables, iproute2, procps, ipset, iprange
 Standards-Version: 3.9.6
 Homepage: http://firehol.org
-Vcs-Git: git://anonscm.debian.org/collab-maint/firehol.git
-Vcs-Browser: http://anonscm.debian.org/gitweb/?p=collab-maint/firehol.git
+Vcs-Git: git://git@github.com:codingfuture/deb-firehol.git
+Vcs-Browser: https://github.com/codingfuture/deb-firehol
 
 Package: firehol
 Architecture: all
@@ -36,7 +36,7 @@ Description: FireHOL is a language (and a program to run it) which builds secure
  * fireqos
  * link-balancer
  * update-ipsets
- * vnetbuilder
+ * vnetbuild
 
 Package: firehol-doc
 Section: doc

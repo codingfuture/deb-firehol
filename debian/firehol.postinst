@@ -9,7 +9,7 @@ if [ -f /etc/firehol.conf ]; then
 	echo
 fi
 if [ -f /etc/fireqos/fireqos.conf ]; then
-        mv -n /etc/fireqos/* /etc/fireqos/
+        mv -n /etc/fireqos/* /etc/firehol/
         echo
         echo
         echo "FireQOS is back to upstream approach of common config folder."

@@ -4,5 +4,5 @@ debian/fireqos.conf etc/fireqos
 sbin/fireqos sbin
 sbin/link-balancer sbin
 sbin/update-ipsets sbin
-sbin/vnetbuilder sbin
+sbin/vnetbuild sbin
 sbin/functions.common.sh lib/firehol

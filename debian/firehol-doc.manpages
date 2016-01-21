@@ -1,2 +1,2 @@
-debian/tmp/usr/share/man/man5/firehol-*.5
-debian/tmp/usr/share/man/man5/fireqos-*.5
+debian/tmp/share/man/man5/firehol-*.5
+debian/tmp/share/man/man5/fireqos-*.5

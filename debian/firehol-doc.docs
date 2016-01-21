@@ -1,8 +1,8 @@
 THANKS
 README
-debian/tmp/usr/share/doc/firehol/firehol-manual.pdf
-debian/tmp/usr/share/doc/firehol/html/firehol-manual.html
-debian/tmp/usr/share/doc/firehol/html/firehol-manual.css
-debian/tmp/usr/share/doc/firehol/fireqos-manual.pdf
-debian/tmp/usr/share/doc/firehol/html/fireqos-manual.html
-debian/tmp/usr/share/doc/firehol/html/firehol-manual.css
+debian/tmp/share/doc/firehol/firehol-manual.pdf
+debian/tmp/share/doc/firehol/html/firehol-manual.html
+debian/tmp/share/doc/firehol/html/firehol-manual.css
+debian/tmp/share/doc/firehol/fireqos-manual.pdf
+debian/tmp/share/doc/firehol/html/fireqos-manual.html
+debian/tmp/share/doc/firehol/html/firehol-manual.css

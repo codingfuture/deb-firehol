@@ -1,4 +1,4 @@
-debian/tmp/usr/share/man/man1/firehol.1
-debian/tmp/usr/share/man/man5/firehol.conf.5
-debian/tmp/usr/share/man/man1/fireqos.1
-debian/tmp/usr/share/man/man5/fireqos.conf.5
+debian/tmp/share/man/man1/firehol.1
+debian/tmp/share/man/man5/firehol.conf.5
+debian/tmp/share/man/man1/fireqos.1
+debian/tmp/share/man/man5/fireqos.conf.5
