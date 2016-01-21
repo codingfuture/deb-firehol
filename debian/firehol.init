@@ -1,20 +1,22 @@
 #! /bin/sh
 ### BEGIN INIT INFO
 # Provides:          firehol
-# Required-Start:    $network $remote_fs $syslog
-# Required-Stop:     $network $remote_fs $syslog
+# Required-Start:    $local_fs
+# Required-Stop:     $local_fs
+# X-Start-Before:    $network
+# X-Stop-After:      $network
 # Default-Start:     2 3 4 5
 # Default-Stop:      0 1 6
 # Description: Starts firehol firewall configuration
 # short-description: firehol firewall configuration
 ### END INIT INFO
 
-PATH=/bin:/usr/bin:/sbin:/usr/sbin
+PATH=/bin:/sbin
 NAME=firehol
 DESC="firewall"
 SCRIPTNAME=/etc/init.d/$NAME
 
-test -x /usr/sbin/firehol || exit 0
+test -x /sbin/firehol || exit 0
 
 [ -r /etc/default/firehol ] && set -a && . /etc/default/firehol
 
@@ -39,14 +41,14 @@ do_start () {
 	#  1 001 if firewall could not be activated
 	#  4 100 if FireHOL is disabled via /etc/default/firehol
 	[ "$START_FIREHOL" = "NO"  ] && return 4
-	/usr/sbin/firehol start "$@" > /dev/null 2>&1 || return 1
+	/sbin/firehol start "$@" > /dev/null 2>&1 || return 1
 }
 
 do_stop () {
 	# return
 	#  0 000 if firewall has been cleaned up properly
 	#  1 001 otherwise
-	/usr/sbin/firehol stop > /dev/null 2>&1 || return 1
+	/sbin/firehol stop > /dev/null 2>&1 || return 1
 }
 
 do_condrestart () {
@@ -55,7 +57,7 @@ do_condrestart () {
 	#  1 001 if firewall could not be activated
 	#  4 100 if FireHOL is disabled via /etc/default/firehol
 	[ "$START_FIREHOL" = "NO"  ] && return 4
-	/usr/sbin/firehol condrestart "$@" > /dev/null 2>&1 || return 1
+	/sbin/firehol condrestart "$@" > /dev/null 2>&1 || return 1
 }
 
 COMMAND="$1"
