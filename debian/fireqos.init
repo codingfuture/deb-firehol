@@ -9,12 +9,12 @@
 # short-description: fireqos traffic shaper configuration
 ### END INIT INFO
 
-PATH=/bin:/usr/bin:/sbin:/usr/sbin
+PATH=/bin:/sbin
 NAME=fireqos
 DESC="traffic shaper"
 SCRIPTNAME=/etc/init.d/$NAME
 
-test -x /usr/sbin/fireqos || exit 0
+test -x /sbin/fireqos || exit 0
 
 [ -r /etc/default/fireqos ] && set -a && . /etc/default/fireqos
 
@@ -39,21 +39,21 @@ do_start () {
 	#  1 001 if traffic shaper could not be started
 	#  4 100 if FireQOS is disabled via /etc/default/fireqos
 	[ "$START_FIREQOS" = "NO"  ] && return 4
-	/usr/sbin/fireqos start "$@" > /dev/null 2>&1 || return 1
+	/sbin/fireqos start "$@" > /dev/null 2>&1 || return 1
 }
 
 do_stop () {
 	# return
 	#  0 000 if traffic shaper has been cleaned up properly
 	#  1 001 otherwise
-	/usr/sbin/fireqos stop > /dev/null 2>&1 || return 1
+	/sbin/fireqos stop > /dev/null 2>&1 || return 1
 }
 
 do_clear () {
 	# return
 	#  0 000 if traffic shaper has been cleared
 	#  1 001 otherwise
-	/usr/sbin/fireqos clear_all_qos > /dev/null 2>&1 || return 1
+	/sbin/fireqos clear_all_qos > /dev/null 2>&1 || return 1
 }
 
 do_progressing_restart () {
@@ -64,9 +64,9 @@ do_progressing_restart () {
 	#  4 100 if FireQOS is disabled via /etc/default/fireqos
 	[ "$START_FIREQOS" = "NO"  ] && return 4
 	log_progress_msg "stopping"
-	/usr/sbin/fireqos stop > /dev/null 2>&1 || return 1
+	/sbin/fireqos stop > /dev/null 2>&1 || return 1
 	log_progress_msg "starting"
-	/usr/sbin/fireqos start "$@" > /dev/null 2>&1 || return 2
+	/sbin/fireqos start "$@" > /dev/null 2>&1 || return 2
 }
 
 COMMAND="$1"

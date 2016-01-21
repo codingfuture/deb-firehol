@@ -5,3 +5,4 @@ debian/tmp/usr/share/doc/firehol/examples/icmpv6.conf
 debian/tmp/usr/share/doc/firehol/examples/office.conf
 debian/tmp/usr/share/doc/firehol/examples/adblock.sh
 debian/examples/*
+debian/tmp/usr/share/doc/firehol/examples/fireqos.conf
