@@ -1,3 +1,13 @@
+firehol (3.0.1+ds-cfubuntu1) trusty; urgency=medium
+
+  * New upstream version.
+  * Change FireHOL to be a critical system service as it need to start
+    before network (and potentially /usr).
+  * Reverted to upstream behavior of single package for all tools.
+  * Synced with Debian changes.
+
+ -- Andrey Galkin <andrey@futoin.org>  Thu, 21 Jan 2016 09:37:10 +0200
+
 firehol (2.0.4+ds-cfubuntu2) trusty; urgency=medium
 
   * Synced with Debian changes
