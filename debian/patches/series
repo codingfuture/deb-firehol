@@ -1,3 +1,2 @@
-0001-Applied-the-original-debianization-fireqos.patch-ide.patch
-0002-Applied-the-original-upstream-lock_folder.patch-idea.patch
-0003-Fixed-README.md-dependency-path.patch
+0001-Fixed-Makefile-README-dep-problem.patch
+0002-Debianization-of-run-usage.patch
