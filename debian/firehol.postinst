@@ -8,4 +8,13 @@ if [ -f /etc/firehol.conf ]; then
 	echo "Your existing configuration has been moved to its new place."
 	echo
 fi
+if [ -f /etc/fireqos/fireqos.conf ]; then
+        mv -n /etc/fireqos/* /etc/firehol/
+        echo
+        echo
+        echo "FireQOS is back to upstream approach of common config folder."
+        echo "Your existing configuration has been moved to /etc/firehol."
+        echo "Conflicting file names may still need to be moved manually."
+        echo
+fi
 #DEBHELPER#

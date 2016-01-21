@@ -4,6 +4,9 @@ firehol (2.0.4+ds-cfubuntu2) trusty; urgency=medium
 
  -- Andrey Galkin <andrey@futoin.org>  Thu, 21 Jan 2016 05:22:14 +0200
 
+
+ -- Andrey Galkin <andrey@futoin.org>  Thu, 21 Jan 2016 09:33:21 +0200
+
 firehol (2.0.4+ds-cf2) unstable; urgency=medium
 
   * Fixed to start FireHOL before network

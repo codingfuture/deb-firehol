@@ -1,2 +1,2 @@
-upstream-lock_folder.patch
-debianization-fireqos.patch
+0001-Fixed-Makefile-README-dep-problem.patch
+0002-Debianization-of-run-usage.patch

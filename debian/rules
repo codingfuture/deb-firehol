@@ -7,10 +7,14 @@ default:
 	dh $@ --with autoreconf
 
 override_dh_auto_configure:
-	dh_auto_configure -- --enable-maintainer-mode
+	./configure \
+		--prefix=/ \
+		--libdir=/lib \
+		--enable-maintainer-mode
 
 override_dh_installinit:
 	dh_installinit --restart-after-upgrade
+	dh_installinit -p fireqos --restart-after-upgrade
 
 get-orig-source:
 	uscan --no-conf --download-current-version --verbose
