@@ -7,7 +7,8 @@ Build-Depends-Indep:
  libxml2-utils,
  texlive-base, texlive-latex-recommended, texlive-fonts-recommended, lmodern,
  pandoc,
- kmod, iptables, iproute2, procps, ipset, iprange
+ kmod, iptables, iproute2, procps, ipset, iprange, iputils-ping,
+ traceroute, curl, gawk
 Standards-Version: 3.9.6
 Homepage: http://firehol.org
 Vcs-Git: git://git@github.com:codingfuture/deb-firehol.git
