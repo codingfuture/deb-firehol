@@ -1,0 +1,82 @@
+From: Andrey Galkin <andrey@futoin.org>
+Date: Thu, 29 Dec 2016 00:56:51 +0200
+Subject: Support include lib/firehol folder
+
+---
+ sbin/firehol       | 3 +++
+ sbin/fireqos       | 3 +++
+ sbin/link-balancer | 3 +++
+ sbin/update-ipsets | 3 +++
+ sbin/vnetbuild     | 3 +++
+ 5 files changed, 15 insertions(+)
+
+diff --git a/sbin/firehol b/sbin/firehol
+index 31af6c8..ea8679c 100755
+--- a/sbin/firehol
++++ b/sbin/firehol
+@@ -45,6 +45,9 @@ do
+ 	if [ -r "$PROGRAM_DIR/$functions_file" ]
+ 	then
+ 		source "$PROGRAM_DIR/$functions_file"
++	elif [ -r "$PROGRAM_DIR/../lib/firehol/$functions_file" ]
++	then
++		source "$PROGRAM_DIR/../lib/firehol/$functions_file"
+ 	else
+ 		1>&2 echo "Cannot access $PROGRAM_DIR/$functions_file"
+ 		exit 1
+diff --git a/sbin/fireqos b/sbin/fireqos
+index 91e14f8..4ab99bc 100755
+--- a/sbin/fireqos
++++ b/sbin/fireqos
+@@ -45,6 +45,9 @@ do
+ 	if [ -r "$PROGRAM_DIR/$functions_file" ]
+ 	then
+ 		source "$PROGRAM_DIR/$functions_file"
++	elif [ -r "$PROGRAM_DIR/../lib/firehol/$functions_file" ]
++	then
++		source "$PROGRAM_DIR/../lib/firehol/$functions_file"
+ 	else
+ 		1>&2 echo "Cannot access $PROGRAM_DIR/$functions_file"
+ 		exit 1
+diff --git a/sbin/link-balancer b/sbin/link-balancer
+index 4d702bf..0f63ba4 100755
+--- a/sbin/link-balancer
++++ b/sbin/link-balancer
+@@ -45,6 +45,9 @@ do
+ 	if [ -r "$PROGRAM_DIR/$functions_file" ]
+ 	then
+ 		source "$PROGRAM_DIR/$functions_file"
++	elif [ -r "$PROGRAM_DIR/../lib/firehol/$functions_file" ]
++	then
++		source "$PROGRAM_DIR/../lib/firehol/$functions_file"
+ 	else
+ 		1>&2 echo "Cannot access $PROGRAM_DIR/$functions_file"
+ 		exit 1
+diff --git a/sbin/update-ipsets b/sbin/update-ipsets
+index 8b9a3f5..5b52c08 100755
+--- a/sbin/update-ipsets
++++ b/sbin/update-ipsets
+@@ -101,6 +101,9 @@ do
+ 	if [ -r "$PROGRAM_DIR/$functions_file" ]
+ 	then
+ 		source "$PROGRAM_DIR/$functions_file"
++	elif [ -r "$PROGRAM_DIR/../lib/firehol/$functions_file" ]
++	then
++		source "$PROGRAM_DIR/../lib/firehol/$functions_file"
+ 	else
+ 		1>&2 echo "Cannot access $PROGRAM_DIR/$functions_file"
+ 		exit 1
+diff --git a/sbin/vnetbuild b/sbin/vnetbuild
+index ca89a72..1697f68 100755
+--- a/sbin/vnetbuild
++++ b/sbin/vnetbuild
+@@ -46,6 +46,9 @@ do
+ 	if [ -r "$PROGRAM_DIR/$functions_file" ]
+ 	then
+ 		source "$PROGRAM_DIR/$functions_file"
++	elif [ -r "$PROGRAM_DIR/../lib/firehol/$functions_file" ]
++	then
++		source "$PROGRAM_DIR/../lib/firehol/$functions_file"
+ 	else
+ 		1>&2 echo "Cannot access $PROGRAM_DIR/$functions_file"
+ 		exit 1

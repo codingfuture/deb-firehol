@@ -19,9 +19,10 @@ Architecture: all
 Depends: ${misc:Depends}, lsb-base, kmod, iptables, iproute2, tcpdump, procps,
  ipset, iprange
 Suggests: firehol-doc (= ${binary:Version}), ulogd2
-Replaces: fireqos (<< 3.0.0)
-Breaks: fireqos (<< 3.0.0)
-Description: FireHOL is a language (and a program to run it) which builds secure,
+Replaces: fireqos
+Conflicts: fireqos
+Provides: fireqos
+Description: A language (and a program to run it) which builds secure,
  stateful firewalls from easy to understand, human-readable configurations. The
  configurations stay readable even for very complex setups.
  .

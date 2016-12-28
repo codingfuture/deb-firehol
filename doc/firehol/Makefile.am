@@ -1,7 +1,13 @@
 # Process this file with automake to produce Makefile.in
 
+if MAINTAINER_MODE
+gensrcdir=../..
+else
+gensrcdir=${top_srcdir}
+endif
+
 MANUAL_LINKS = \
-	${top_srcdir}/doc/service-links \
+	$(gensrcdir)/doc/service-links \
 	${top_srcdir}/doc/links-internal-firehol \
 	${top_srcdir}/doc/links-keywords-firehol \
 	${top_srcdir}/doc/links-website-firehol
@@ -47,19 +53,24 @@ MANUALMAN_GENERATED = \
 	man/man5/firehol-tcpmss.5 \
 	man/man5/firehol-tos.5 \
 	man/man5/firehol-tosfix.5 \
-	man/man5/firehol-variables.5 \
+	man/man5/firehol-defaults-conf.5 \
 	man/man5/firehol-version.5
 
 # Generate using:
 # sed -ne 's;extra-manpage: \(.*\)\([0-9]\);\tman/man\2/\1\2 \\;p' *.md|sort -u
 MANUALMAN_GENERATED_INDIRECT = \
 	man/man5/firehol-accept.5 \
+	man/man5/firehol-action4.5 \
+	man/man5/firehol-action46.5 \
+	man/man5/firehol-action6.5 \
+	man/man5/firehol-both.5 \
 	man/man5/firehol-client4.5 \
 	man/man5/firehol-client46.5 \
 	man/man5/firehol-client6.5 \
 	man/man5/firehol.conf.5 \
 	man/man5/firehol-custom.5 \
 	man/man5/firehol-deny.5 \
+	man/man5/firehol-defaults.conf.5 \
 	man/man5/firehol-dnat.5 \
 	man/man5/firehol-dport.5 \
 	man/man5/firehol-drop.5 \
@@ -107,11 +118,14 @@ MANUALMAN_GENERATED_INDIRECT = \
 	man/man5/firehol-src.5 \
 	man/man5/firehol-src6.5 \
 	man/man5/firehol-srctype.5 \
+	man/man5/firehol-synproxy4.5 \
+	man/man5/firehol-synproxy6.5 \
 	man/man5/firehol-tarpit.5 \
 	man/man5/firehol-tos-param.5 \
 	man/man5/firehol-transparent_proxy.5 \
 	man/man5/firehol-transparent_squid.5 \
-	man/man5/firehol-uid.5
+	man/man5/firehol-uid.5 \
+	man/man5/firehol-variables.5
 
 MANUALMARKDOWN_GENERATED = \
 	contents.md \
@@ -146,12 +160,10 @@ MKSERVICEMAN = ${top_srcdir}/doc/tools/mkserviceman
 MANSYNOS = ${top_srcdir}/doc/tools/man-synos
 COMBINEPANDOC = ${top_srcdir}/doc/tools/combine-pandoc
 FORMATTABLE = ${top_srcdir}/doc/tools/format-table
-PANDOCPOST = ${top_srcdir}/doc/tools/pandoc-post
+PANDOCPOST = $(gensrcdir)/doc/tools/pandoc-post
 CHECKLINKS = ${top_srcdir}/doc/tools/check-links
 
-FIREHOLIN = $(top_srcdir)/sbin/firehol.in
-
-firehol-services.5.md: $(FIREHOLIN) ../services-db.data ../service-links
+firehol-services.5.md: $(top_srcdir)/sbin/firehol ../services-db.data ../service-links
 	$(MKSERVICEMAN) firehol-services.5.md $+
 
 contents.md: *.1.md *.5.md contents.tpl

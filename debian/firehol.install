@@ -5,4 +5,5 @@ sbin/fireqos sbin
 sbin/link-balancer sbin
 sbin/update-ipsets sbin
 sbin/vnetbuild sbin
-sbin/functions.common.sh lib/firehol
+sbin/install.config lib/firehol
+sbin/functions.common lib/firehol

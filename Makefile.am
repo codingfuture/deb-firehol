@@ -11,13 +11,13 @@ AUTOMAKE_OPTIONS = \
 AM_DISTCHECK_CONFIGURE_FLAGS = \
 	--disable-maintainer-mode
 
-SUBDIRS = sbin etc examples doc contrib html
+SUBDIRS = sbin etc examples doc contrib html tests
 
 DIST_SUBDIRS = $(SUBDIRS) m4
 
 EXTRA_DIST = autogen.sh README
 
-if MAINTAINER_MODE
+if GIT_TREE
 
 all-local: README
 
