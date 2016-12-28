@@ -1,3 +1,14 @@
+firehol (3.1.0-cfubuntu1) trusty; urgency=medium
+
+  * New upstream version 3.1.0
+  * Removed outdated patches
+  * Updated install file list
+  * Updated control file to replace fireqos package
+  * Added install.config installation
+  * Added patch to support include from lib/firehol folder
+
+ -- Andrey Galkin <andrey@futoin.org>  Thu, 29 Dec 2016 01:31:04 +0200
+
 firehol (3.0.1+ds-cfubuntu2) trusty; urgency=medium
 
   * Added more build deps to fix Launchpad dep problem
