@@ -26,7 +26,7 @@ FireHOL is started and stopped using the [firehol][firehol(1)] script.
 The default firewall configuration is to be found in
 [/etc/firehol/firehol.conf][firehol.conf(5)], with some behaviours
 governed by variables in
-[/etc/firehol/firehol-defaults.conf][firehol-variables(5)].
+[/etc/firehol/firehol-defaults.conf][firehol-defaults.conf(5)].
 
 # Primary commands
 
@@ -98,6 +98,8 @@ command                                                   4/6/46                
 
 [connmark][keyword-firehol-connmark]                    Y                         -                                         Set a stateful mark from the `connmark` group.                                                                                                        
 
+[cthelper][keyword-firehol-cthelper]                    4/6                       -                                         Control connection tracking helpers.                                                                                                                  
+
 [dscp][keyword-firehol-dscp-helper]                     Y                         -                                         Set the DSCP field of packets.                                                                                                                        
 
 [ipset][keyword-firehol-ipset]                          4/6                       *all forbidden*                           Define ipsets. A wrapper for the system ipset command to add ipsets to a FireHOL firewall.                                                            
@@ -142,6 +144,7 @@ command                                                   4/6/46                
 * [firehol-classify(5)](firehol-classify.5.md) <!-- include firehol-classify.5.md -->
 * [firehol-client(5)](firehol-client.5.md) <!-- include firehol-client.5.md -->
 * [firehol-connmark(5)](firehol-connmark.5.md) <!-- include firehol-connmark.5.md -->
+* [firehol-defaults.conf(5)](firehol-defaults-conf.5.md) <!-- include firehol-defaults-conf.5.md -->
 * [firehol-dscp(5)](firehol-dscp.5.md) <!-- include firehol-dscp.5.md -->
 * [firehol-group(5)](firehol-group.5.md) <!-- include firehol-group.5.md -->
 * [firehol-interface(5)](firehol-interface.5.md) <!-- include firehol-interface.5.md -->
@@ -164,5 +167,4 @@ command                                                   4/6/46                
 * [firehol-tcpmss(5)](firehol-tcpmss.5.md) <!-- include firehol-tcpmss.5.md -->
 * [firehol-tos(5)](firehol-tos.5.md) <!-- include firehol-tos.5.md -->
 * [firehol-tosfix(5)](firehol-tosfix.5.md) <!-- include firehol-tosfix.5.md -->
-* [firehol-variables(5)](firehol-variables.5.md) <!-- include firehol-variables.5.md -->
 * [firehol-version(5)](firehol-version.5.md) <!-- include firehol-version.5.md -->
