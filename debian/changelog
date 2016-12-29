@@ -1,3 +1,9 @@
+firehol (3.1.0-cfubuntu2) trusty; urgency=medium
+
+  * Allow unittest failure which fails due to root user on Launchpad
+
+ -- Andrey Galkin <andrey@futoin.org>  Thu, 29 Dec 2016 02:04:21 +0200
+
 firehol (3.1.0-cfubuntu1) trusty; urgency=medium
 
   * New upstream version 3.1.0
