@@ -1,9 +1,11 @@
 debian/firehol.conf etc/firehol
-sbin/firehol sbin
 debian/fireqos.conf etc/fireqos
-sbin/fireqos sbin
-sbin/link-balancer sbin
-sbin/update-ipsets sbin
-sbin/vnetbuild sbin
-sbin/install.config lib/firehol
-sbin/functions.common lib/firehol
+
+sbin/firehol usr/lib/firehol
+sbin/fireqos usr/lib/firehol
+sbin/link-balancer usr/lib/firehol
+sbin/update-ipsets usr/lib/firehol
+sbin/vnetbuild usr/lib/firehol
+sbin/install.config usr/lib/firehol
+sbin/functions.common usr/lib/firehol
+
