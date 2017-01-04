@@ -1,3 +1,9 @@
+firehol (3.1.0-cf2) unstable; urgency=medium
+
+  * Updated firehol to be installed the original way with synlinks
+
+ -- Andrey Galkin <andrey@futoin.org>  Wed, 04 Jan 2017 18:03:15 +0200
+
 firehol (3.1.0-cf1) unstable; urgency=medium
 
   * Added more build deps to fix Launchpad dep problem
