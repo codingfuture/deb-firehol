@@ -1,0 +1,7 @@
+usr/lib/firehol/firehol usr/sbin/firehol
+usr/lib/firehol/fireqos usr/sbin/fireqos
+usr/lib/firehol/link-balancer usr/sbin/link-balancer
+usr/lib/firehol/update-ipsets usr/sbin/update-ipsets
+usr/lib/firehol/vnetbuild usr/sbin/vnetbuild
+
+usr/lib/firehol/firehol sbin/firehol
