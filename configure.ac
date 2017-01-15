@@ -5,7 +5,7 @@ AC_PREREQ([2.63])
 dnl Package version
 define([VERSION_MAJOR], [3])
 define([VERSION_MINOR], [1])
-define([VERSION_FIX], [0])
+define([VERSION_FIX], [1])
 define([VERSION_SUFFIX], [])
 
 dnl Required program versions
@@ -361,7 +361,6 @@ AX_CHECK_PROG([DOT], [dot], [])
 AX_NEED_PROG([RM], [rm], [])
 AX_CHECK_PROG([SH], [sh], [])
 AX_CHECK_PROG([SH], [bash], [])
-AX_NEED_PROG([SH], [ksh], [])
 AX_NEED_PROG([SLEEP], [sleep], [])
 AX_NEED_PROG([TR], [tr], [])
 fi
