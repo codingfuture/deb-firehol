@@ -1,3 +1,9 @@
+firehol (3.1.1-cfxenial1) xenial; urgency=medium
+
+  * New upstream version 3.1.1
+
+ -- Andrey Galkin <andrey@futoin.org>  Sun, 15 Jan 2017 22:49:20 +0200
+
 firehol (3.1.0-cfxenial2) xenial; urgency=medium
 
   * Updated firehol to be installed the original way with synlinks
