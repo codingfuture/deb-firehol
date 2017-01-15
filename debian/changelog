@@ -1,3 +1,9 @@
+firehol (3.1.1-cftrusty1) trusty; urgency=medium
+
+  * New upstream version 3.1.1
+
+ -- Andrey Galkin <andrey@futoin.org>  Sun, 15 Jan 2017 22:47:08 +0200
+
 firehol (3.1.0-cftrusty3) trusty; urgency=medium
 
   * Updated firehol to be installed the original way with synlinks
