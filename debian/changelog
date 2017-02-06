@@ -1,3 +1,9 @@
+firehol (3.1.2-1) trusty; urgency=medium
+
+  * New upstream version 3.1.2
+
+ -- Andrey Galkin <andrey@futoin.org>  Mon, 06 Feb 2017 12:00:48 +0200
+
 firehol (3.1.1-cftrusty1) trusty; urgency=medium
 
   * New upstream version 3.1.1
