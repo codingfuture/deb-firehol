@@ -821,6 +821,7 @@ AC_SUBST([am__tar])
 AC_SUBST([am__untar])
 ]) # _AM_PROG_TAR
 
+m4_include([m4/ax_check_ln_s_r.m4])
 m4_include([m4/ax_check_minver.m4])
 m4_include([m4/ax_check_modprobe_quiet.m4])
 m4_include([m4/ax_check_pandoc_output.m4])
