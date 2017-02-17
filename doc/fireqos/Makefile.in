@@ -82,7 +82,8 @@ POST_UNINSTALL = :
 subdir = doc/fireqos
 DIST_COMMON = $(srcdir)/Makefile.in $(srcdir)/Makefile.am
 ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
-am__aclocal_m4_deps = $(top_srcdir)/m4/ax_check_minver.m4 \
+am__aclocal_m4_deps = $(top_srcdir)/m4/ax_check_ln_s_r.m4 \
+	$(top_srcdir)/m4/ax_check_minver.m4 \
 	$(top_srcdir)/m4/ax_check_modprobe_quiet.m4 \
 	$(top_srcdir)/m4/ax_check_pandoc_output.m4 \
 	$(top_srcdir)/m4/ax_check_ping_ipv6.m4 \
@@ -218,6 +219,7 @@ LIBOBJS = @LIBOBJS@
 LIBS = @LIBS@
 LN = @LN@
 LN_S = @LN_S@
+LN_S_R = @LN_S_R@
 LOGGER = @LOGGER@
 LS = @LS@
 LSMOD = @LSMOD@
