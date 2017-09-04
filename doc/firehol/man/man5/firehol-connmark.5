@@ -1,38 +1,41 @@
-.TH "firehol\-connmark" "5" "Built 17 Feb 2017" "FireHOL Reference" "3.1.3"
+.TH "firehol\-connmark" "5" "Built 20 Aug 2017" "FireHOL Reference" "3.1.4"
 .nh
 .SH NAME
 .PP
-firehol\-connmark \- set a stateful mark on a connection
+firehol\-connmark \- set a stateful mark from the connmark group
 .SH SYNOPSIS
 .PP
-\f[I]Warning \- this manual page is out of date for nightly build/v3
-behaviour\f[]
-.PP
-{ connmark | connmark46 } { value | save | restore } \f[I]chain\f[]
+{ connmark | connmark46 } \f[I]value\f[] \f[I]chain\f[]
 \f[I]rule\-params\f[]
 .PP
-connmark4 { value | save | restore } \f[I]chain\f[]
-\f[I]rule\-params\f[]
+connmark4 \f[I]value\f[] \f[I]chain\f[] \f[I]rule\-params\f[]
 .PP
-connmark6 { value | save | restore } \f[I]chain\f[]
-\f[I]rule\-params\f[]
+connmark6 \f[I]value\f[] \f[I]chain\f[] \f[I]rule\-params\f[]
 .SH DESCRIPTION
 .PP
-The \f[C]connmark\f[] helper command sets a mark on a whole connection.
-It applies to both directions.
+Marks on packets can be matched by traffic shaping, routing, and
+firewall rules for controlling traffic.
 .RS
 .PP
-\f[B]Note\f[]
-.PP
-To set a mark on packets matching particular rules, regardless of any
-connection, see firehol\-mark(5).
+\f[B]Note\f[] Behaviour changed significantly in FireHOL v3 compared to
+earlier versions
 .RE
 .PP
-The \f[I]value\f[] is the mark value to set (a 32 bit integer).
-If you specify \f[C]save\f[] then the mark on the matched packet will be
-turned into a connmark.
-If you specify \f[C]restore\f[] then the matched packet will have its
-mark set to the current connmark.
+FireHOL uses iptables \f[C]masks\f[] to break the single 32\-bit integer
+mark value into smaller groups and allows you to set and match them
+independently.
+The \f[C]markdef\f[] group definitions to set this up are found in
+\f[C]firehol\-defaults.conf\f[]
+.PP
+The \f[C]connmark\f[] helper command sets values within the
+\f[C]connmark\f[] group.
+You can set \f[I]value\f[] between 0 (no mark) and \f[C]size\f[]\-1.
+The default size for \f[C]connmark\f[] is 64, so 63 is highest
+\f[I]value\f[] possible.
+The default \f[C]connmark\f[] types are
+\f[C]stateful\f[]+\f[C]permanent\f[], meaning the initial match will
+only be done on \f[C]NEW\f[] packets and the mark will be restored to
+all packets in the connection.
 .PP
 The \f[I]chain\f[] will be used to find traffic to mark.
 It can be any of the iptables(8) built in chains belonging to the
@@ -44,29 +47,36 @@ The \f[I]rule\-params\f[] define a set of rule parameters to match the
 traffic that is to be marked within the chosen chain.
 See firehol\-params(5) for more details.
 .PP
-Any \f[C]connmark\f[] commands will affect all traffic matched.
-They must be declared before the first router or interface.
-.SH EXAMPLES
+Any \f[C]connmark\f[] commands must be declared before the first router
+or interface.
+.RS
 .PP
-Consider a scenario with 3 ethernet ports, where eth0 is on the local
-LAN, eth1 connects to ISP \[aq]A\[aq] and eth2 to ISP \[aq]B\[aq].
-To ensure traffic leaves via the same ISP as it arrives from you can
-mark the traffic.
+\f[B]Note\f[]
+.PP
+If you want to do policy based routing based on iptables(8) marks, you
+will need to disable the Root Path Filtering on the interfaces involved
+(rp_filter in sysctl).
+.PP
+FireQOS will read the FireHOL mark definitions and set up suitable
+offsets and marks for the various groups.
+If you are using a different tool, you should look at the emitted
+firewall to determine the final masks and values to use.
+.RE
+.SH EXAMPLES
 .IP
 .nf
 \f[C]
-\ #\ mark\ connections\ when\ they\ arrive\ from\ the\ ISPs
-\ connmark\ 1\ PREROUTING\ inface\ eth1
-\ connmark\ 2\ PREROUTING\ inface\ eth2
+\ #\ mark\ with\ 1,\ packets\ sent\ by\ the\ local\ machine
+\ connmark\ 1\ OUTPUT
 
-\ #\ restore\ the\ mark\ (from\ the\ connmark)\ when\ packets\ arrive\ from\ the\ LAN
-\ connmark\ restore\ OUTPUT
-\ connmark\ restore\ PREROUTING\ inface\ eth0
+\ #\ mark\ with\ 2,\ packets\ routed\ by\ the\ local\ machine
+\ connmark\ 2\ FORWARD
+
+\ #\ mark\ with\ 3,\ packets\ routed\ by\ the\ local\ machine,\ sent\ from
+\ #\ \ \ \ \ \ \ \ \ \ \ \ \ \ 192.0.2.2\ destined\ for\ port\ TCP/25\ of\ 198.51.100.1
+\ connmark\ 3\ FORWARD\ proto\ tcp\ dport\ 25\ dst\ 198.51.100.1\ src\ 192.0.2.2
 \f[]
 .fi
-.PP
-It is then possible to use the commands from iproute2 such as ip(8), to
-pick the correct routing table based on the mark on the packets.
 .SH SEE ALSO
 .IP \[bu] 2
 firehol(1) \- FireHOL program
@@ -75,8 +85,8 @@ firehol.conf(5) \- FireHOL configuration
 .IP \[bu] 2
 firehol\-params(5) \- optional rule parameters
 .IP \[bu] 2
-firehol\-mark(5) \- mark traffic for traffic shaping
-tools
+firehol\-mark(5) \- set a stateful mark from the
+usermark group
 .IP \[bu] 2
 iptables(8) (http://ipset.netfilter.org/iptables.man.html) \-
 administration tool for IPv4 firewalls
@@ -87,6 +97,9 @@ administration tool for IPv6 firewalls
 ip(8) \- show / manipulate routing, devices, policy routing and tunnels
 .IP \[bu] 2
 FireHOL Website (http://firehol.org/)
+.IP \[bu] 2
+Working With Marks Wiki
+Page (https://github.com/firehol/firehol/wiki/Working-with-MARKs)
 .IP \[bu] 2
 FireHOL Online PDF Manual (http://firehol.org/firehol-manual.pdf)
 .IP \[bu] 2

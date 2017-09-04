@@ -4811,8 +4811,14 @@ blacklist() {
 				;;
 
 			inface)
-				inface=(inface "${2}")
-				shift 2
+				if [ "${2}" = "not" ]
+				then
+					inface=(inface not "${3}")
+					shift 3
+				else
+					inface=(inface "${2}")
+					shift 2
+				fi
 				;;
 
 			*)	src=( "${src[@]}" "${1}" )
@@ -7640,8 +7646,8 @@ rule() {
 				test ${softwarnings} -eq 1 -a ! -z "${not}" && softwarning "Cannot negate an accounting. 'not' ignored."
 				if [ ${ENABLE_ACCOUNTING} -eq 1 ]
 				then
-					accounting="$2"
-					FIREHOL_NFACCT[$accounting]="1"
+					accounting="${1}"
+					FIREHOL_NFACCT[${accounting}]="1"
 				elif [ ${ACCOUNTING_WARNING} -eq 1 ]
 				then
 					softwarning "Accounting is requested, but accounting is disabled. Is nfacct installed?"
@@ -8507,9 +8513,9 @@ rule() {
 		[ ! -z "${hashlimit_srcmask}"           ] && protected_args=("${protected_args[@]}" "--hashlimit-srcmask" "${hashlimit_srcmask}")
 		[ ! -z "${hashlimit_dstmask}"           ] && protected_args=("${protected_args[@]}" "--hashlimit-dstmask" "${hashlimit_dstmask}")
 		[ ! -z "${hashlimit_htable_size}"       ] && protected_args=("${protected_args[@]}" "--hashlimit-htable-size" "${hashlimit_htable_size}")
-		[ ! -z "${hashlimit_htable_max}"        ] && protected_args=("${protected_args[@]}" "--hashlimit_htable_max" "${hashlimit_htable_max}")
-		[ ! -z "${hashlimit_htable_expire}"     ] && protected_args=("${protected_args[@]}" "--hashlimit_htable_expire" "${hashlimit_htable_expire}")
-		[ ! -z "${hashlimit_htable_gcinterval}" ] && protected_args=("${protected_args[@]}" "--hashlimit_htable_gcinterval" "${hashlimit_htable_gcinterval}")
+		[ ! -z "${hashlimit_htable_max}"        ] && protected_args=("${protected_args[@]}" "--hashlimit-htable-max" "${hashlimit_htable_max}")
+		[ ! -z "${hashlimit_htable_expire}"     ] && protected_args=("${protected_args[@]}" "--hashlimit-htable-expire" "${hashlimit_htable_expire}")
+		[ ! -z "${hashlimit_htable_gcinterval}" ] && protected_args=("${protected_args[@]}" "--hashlimit-htable-gcinterval" "${hashlimit_htable_gcinterval}")
 	fi
 
 	# ipset

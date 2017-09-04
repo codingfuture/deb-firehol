@@ -1,4 +1,4 @@
-.TH "firehol\-iptables" "5" "Built 17 Feb 2017" "FireHOL Reference" "3.1.3"
+.TH "firehol\-iptables" "5" "Built 20 Aug 2017" "FireHOL Reference" "3.1.4"
 .nh
 .SH NAME
 .PP
@@ -31,6 +31,25 @@ is activated.
 .PP
 The \f[C]iptables\f[] and \f[C]ip6tables\f[] helpers are provided to
 allow you to hook in commands safely.
+.PP
+When using the \f[C]\-t\f[] option to specify a table, ensure this is
+the first option to \f[C]iptables\f[], otherwise "fast activation" will
+fail with an error message such as:
+.IP
+.nf
+\f[C]
+iptables\-restore:\ The\ \-t\ option\ cannot\ be\ used\ in\ iptables\-restore
+\f[]
+.fi
+.SH EXAMPLES
+.PP
+Fix LXC DHCP on same host:
+.IP
+.nf
+\f[C]
+iptables\ \-t\ mangle\ \-A\ POSTROUTING\ \-p\ udp\ \-\-dport\ 68\ \-j\ CHECKSUM\ \-\-checksum\-fill
+\f[]
+.fi
 .SH SEE ALSO
 .IP \[bu] 2
 firehol(1) \- FireHOL program

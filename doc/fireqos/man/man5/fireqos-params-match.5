@@ -1,4 +1,4 @@
-.TH "fireqos\-params\-match" "5" "Built 17 Feb 2017" "FireQOS Reference" "3.1.3"
+.TH "fireqos\-params\-match" "5" "Built 20 Aug 2017" "FireQOS Reference" "3.1.4"
 .nh
 .SH NAME
 .PP
@@ -209,8 +209,23 @@ If you try it, FireQOS will attempt to do it, but currently you will get
 an error from the tc(8) command executed or they will be silently
 ignored by it.
 .PP
-On openwrt there is a module called \f[C]act_commark\f[] that will
-enable this feature.
+On some Linux distributions (e.g.
+OpenWRT) there is a module called \f[C]act_commark\f[] that will enable
+this feature.
+Set this within your \f[C]fireqos.conf\f[] to enable it:
+.IP
+.nf
+\f[C]
+FIREQOS_CONNMARK_RESTORE="act_connmark"
+\f[]
+.fi
+.PP
+Also note that matching marks requires a suitably configured kernel
+(with \f[C]CONFIG_CLS_U32_MARK=y\f[]).
+There is no error if the kernel is not configured correctly; it just
+silently drops the rules.
+For details see this error
+report (https://github.com/firehol/firehol/issues/231).
 .SS ports, sports, dports
 .PP
 Match ports of the IP header.
