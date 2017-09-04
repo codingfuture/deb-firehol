@@ -1,0 +1,115 @@
+.TH "firehol\-cthelper" "5" "Built 20 Aug 2017" "FireHOL Reference" "3.1.4"
+.nh
+.SH NAME
+.PP
+firehol\-cthelper \- control connection tracking helpers
+.SH SYNOPSIS
+.PP
+{ cthelper | cthelper4 | cthelper6 } \f[I]protocol helper\f[]
+\f[I]where\f[] [\f[I]rule\-params\f[]]
+.SH DESCRIPTION
+.PP
+The netfilter team has included in the Linux kernel protocol helpers
+that monitor traffic and allow them to work under the connection
+tracker.
+.PP
+The following protocol helpers have been provided:
+.IP \[bu] 2
+\f[C]amanda\f[]
+.IP \[bu] 2
+\f[C]ftp\f[]
+.IP \[bu] 2
+\f[C]tftp\f[] (cannot be configured)
+.IP \[bu] 2
+\f[C]h323\f[] (cannot be configured)
+.IP \[bu] 2
+\f[C]irc\f[] (does not support IPv6)
+.IP \[bu] 2
+\f[C]netbios_ns\f[] (cannot be configured)
+.IP \[bu] 2
+\f[C]pptp\f[] (does not support IPv6)
+.IP \[bu] 2
+\f[C]gre\f[] (cannot be configured)
+.IP \[bu] 2
+\f[C]sane\f[]
+.IP \[bu] 2
+\f[C]sip\f[]
+.PP
+By default, the helpers will trust either side of the communication.
+This is considered a security issue and should be avoided.
+.PP
+Using \f[C]cthelper\f[] the helpers that can be configured, can be
+instructed to trust a specific side of the communication.
+.PP
+Before doing so, the variable
+\f[C]FIREHOL_CONNTRACK_HELPERS_ASSIGNMENT\f[] should be set to
+\f[C]manual\f[].
+.PP
+\f[C]where\f[] defines where the trusted traffic is expected.
+It can be:
+.IP \[bu] 2
+\f[C]IN\f[], \f[C]INPUT\f[], or \f[C]PREROUTING\f[] to match incoming
+packets
+.IP \[bu] 2
+\f[C]OUT\f[], \f[C]OUTPUT\f[] to match outgoing packets
+.IP \[bu] 2
+\f[C]BOTH\f[], \f[C]BIDIRECTIONAL\f[], or \f[C]INOUT\f[] to match all
+packets
+.PP
+The \f[I]rule\-params\f[] define a set of rule parameters to further
+restrict the traffic that is matched.
+See firehol\-params(5) for more details.
+.PP
+\f[C]FIREHOL_CONNTRACK_HELPERS_ASSIGNMENT\f[] accepts the following
+values:
+.IP \[bu] 2
+\f[C]kernel\f[] which is the default, allows the kernel to determine by
+itself which side to trust.
+.IP \[bu] 2
+\f[C]firehol\f[] to have FireHOL automatically generate
+\f[C]cthelper\f[] statements keeping \f[C]src\f[], \f[C]dst\f[],
+\f[C]inface\f[] and \f[C]outface\f[] from the statements that require
+each helper.
+Keep in mind this will only generate valid statements if you don\[aq]t
+use NAT at all.
+\f[C]cthelper\f[] statements are executed by iptables before any NAT is
+applied, while packet filtering is configured after DNAT and before
+SNAT, resulting in wrong statements when NAT is applied.
+.IP \[bu] 2
+\f[C]manual\f[] to use the \f[C]cthelper\f[] helper to configure the
+trusts in \f[C]firehol.conf\f[].
+.PP
+When set to \f[C]kernel\f[], FireHOL will set
+\f[C]net.netfilter.nf_conntrack_helper=1\f[].
+In all other cases, FireHOL will set
+\f[C]net.netfilter.nf_conntrack_helper=0\f[].
+.SH EXAMPLES
+.IP
+.nf
+\f[C]
+\ #\ enable\ manual\ protocol\ helpers\ mode
+\ FIREHOL_CONNTRACK_HELPERS_ASSIGNMENT="manual"
+
+\ #\ trust\ SIP\ packets\ we\ send\ via\ interface\ dsl0
+\ cthelper\ sip\ out\ outface\ dsl0
+
+\ #\ trust\ SIP\ packets\ we\ receive\ from\ 10.0.0.1\ via\ eth0
+\ cthelper\ sip\ in\ inface\ eth0\ src\ 10.0.0.1
+
+\ #\ trust\ pptp\ packets\ we\ send\ via\ interface\ wan0\ (IPv4\ only)
+\ cthelper4\ pptp\ out\ outface\ wan0
+\f[]
+.fi
+.SH SEE ALSO
+.IP \[bu] 2
+firehol(1) \- FireHOL program
+.IP \[bu] 2
+firehol.conf(5) \- FireHOL configuration
+.IP \[bu] 2
+FireHOL Website (http://firehol.org/)
+.IP \[bu] 2
+FireHOL Online PDF Manual (http://firehol.org/firehol-manual.pdf)
+.IP \[bu] 2
+FireHOL Online Documentation (http://firehol.org/documentation/)
+.SH AUTHORS
+FireHOL Team.
