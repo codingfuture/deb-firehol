@@ -96,7 +96,7 @@ command                                                   4/6/46                
 
 [classify][keyword-firehol-classify]                    Y                         -                                         Put matching traffic into the specified traffic shaping class.                                                                                        
 
-[connmark][keyword-firehol-connmark]                    Y                         -                                         Set a stateful mark from the `connmark` group.                                                                                                        
+[connmark][keyword-firehol-connmark-helper]             Y                         -                                         Set a stateful mark from the `connmark` group.                                                                                                        
 
 [cthelper][keyword-firehol-cthelper]                    4/6                       -                                         Control connection tracking helpers.                                                                                                                  
 
