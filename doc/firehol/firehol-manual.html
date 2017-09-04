@@ -16,7 +16,7 @@
       <h1 class="title">FireHOL Reference</h1>
       <h2 class="author">Copyright (c) 2002-2017 Costa Tsaousis <a href="mailto:costa@firehol.org">costa@firehol.org</a></h2>
       <h2 class="author">Copyright (c) 2012-2017 Phil Whineray <a href="mailto:phil@firehol.org">phil@firehol.org</a></h2>
-      <h3 class="date">Version 3.1.3 (Built 17 Feb 2017)</h3>
+      <h3 class="date">Version 3.1.4 (Built 20 Aug 2017)</h3>
     </div>
     <div id="TOC">
       <ul>
@@ -340,6 +340,9 @@
                   <a href="#description-13">DESCRIPTION</a>
                 </li>
                 <li>
+                  <a href="#examples-7">EXAMPLES</a>
+                </li>
+                <li>
                   <a href="#see-also-13">SEE ALSO</a>
                 </li>
               </ul>
@@ -357,7 +360,7 @@
                   <a href="#description-14">DESCRIPTION</a>
                 </li>
                 <li>
-                  <a href="#examples-7">EXAMPLES</a>
+                  <a href="#examples-8">EXAMPLES</a>
                 </li>
                 <li>
                   <a href="#see-also-14">SEE ALSO</a>
@@ -377,7 +380,7 @@
                   <a href="#description-15">DESCRIPTION</a>
                 </li>
                 <li>
-                  <a href="#examples-8">EXAMPLES</a>
+                  <a href="#examples-9">EXAMPLES</a>
                 </li>
                 <li>
                   <a href="#see-also-15">SEE ALSO</a>
@@ -397,7 +400,7 @@
                   <a href="#description-16">DESCRIPTION</a>
                 </li>
                 <li>
-                  <a href="#examples-9">EXAMPLES</a>
+                  <a href="#examples-10">EXAMPLES</a>
                 </li>
                 <li>
                   <a href="#see-also-16">SEE ALSO</a>
@@ -420,7 +423,7 @@
                   <a href="#masquerading-and-snat">MASQUERADING AND SNAT</a>
                 </li>
                 <li>
-                  <a href="#examples-10">EXAMPLES</a>
+                  <a href="#examples-11">EXAMPLES</a>
                 </li>
                 <li>
                   <a href="#see-also-17">SEE ALSO</a>
@@ -460,7 +463,7 @@
                   <a href="#balancing">BALANCING</a>
                 </li>
                 <li>
-                  <a href="#examples-11">EXAMPLES</a>
+                  <a href="#examples-12">EXAMPLES</a>
                 </li>
                 <li>
                   <a href="#see-also-19">SEE ALSO</a>
@@ -561,7 +564,7 @@
                   <a href="#description-23">DESCRIPTION</a>
                 </li>
                 <li>
-                  <a href="#examples-15">EXAMPLES</a>
+                  <a href="#examples-16">EXAMPLES</a>
                 </li>
                 <li>
                   <a href="#see-also-23">SEE ALSO</a>
@@ -604,7 +607,7 @@
                   <a href="#description-25">DESCRIPTION</a>
                 </li>
                 <li>
-                  <a href="#examples-16">EXAMPLES</a>
+                  <a href="#examples-17">EXAMPLES</a>
                 </li>
                 <li>
                   <a href="#see-also-25">SEE ALSO</a>
@@ -659,7 +662,7 @@
                   <a href="#synproxy-and-dynamic-ip">SYNPROXY AND DYNAMIC IP</a>
                 </li>
                 <li>
-                  <a href="#examples-17">EXAMPLES</a>
+                  <a href="#examples-18">EXAMPLES</a>
                 </li>
                 <li>
                   <a href="#see-also-26">SEE ALSO</a>
@@ -679,7 +682,7 @@
                   <a href="#description-28">DESCRIPTION</a>
                 </li>
                 <li>
-                  <a href="#examples-18">EXAMPLES</a>
+                  <a href="#examples-19">EXAMPLES</a>
                 </li>
                 <li>
                   <a href="#see-also-27">SEE ALSO</a>
@@ -699,7 +702,7 @@
                   <a href="#description-29">DESCRIPTION</a>
                 </li>
                 <li>
-                  <a href="#examples-19">EXAMPLES</a>
+                  <a href="#examples-20">EXAMPLES</a>
                 </li>
                 <li>
                   <a href="#see-also-28">SEE ALSO</a>
@@ -982,9 +985,7 @@ make install</code></pre>
           <td align="left">Put matching traffic into the specified traffic shaping class.</td>
         </tr>
         <tr class="even">
-          <td align="left">
-            <a href="#firehol-connmark5">connmark</a>
-          </td>
+          <td align="left">[connmark][keyword-firehol-connmark-helper]</td>
           <td align="center">Y</td>
           <td align="left">-</td>
           <td align="left">Set a stateful mark from the <code>connmark</code> group.</td>
@@ -2127,45 +2128,50 @@ client smtp accept log "mail packet" src 192.0.2.1</code></pre>
     <h3 id="name-7">
       <a href="#name-7">NAME</a>
     </h3>
-    <p>firehol-connmark - set a stateful mark on a connection</p>
-<!--
-contents-table:helper:connmark:keyword-firehol-connmark:Y:-:Set a stateful mark from the `connmark` group.
-  -->
+    <p>firehol-connmark - set a stateful mark from the connmark group</p>
     <h3 id="synopsis-6">
       <a href="#synopsis-6">SYNOPSIS</a>
     </h3>
-    <p>
-      <em>Warning - this manual page is out of date for nightly build/v3 behaviour</em>
-    </p>
-    <p>{ connmark | connmark46 } { value | save | restore } <em>chain</em> <em>rule-params</em></p>
-    <p>connmark4 { value | save | restore } <em>chain</em> <em>rule-params</em></p>
-    <p>connmark6 { value | save | restore } <em>chain</em> <em>rule-params</em></p>
+    <p>{ connmark | connmark46 } <em>value</em> <em>chain</em> <em>rule-params</em></p>
+    <p>connmark4 <em>value</em> <em>chain</em> <em>rule-params</em></p>
+    <p>connmark6 <em>value</em> <em>chain</em> <em>rule-params</em></p>
+<!--
+contents-table:helper:connmark:keyword-firehol-connmark-helper:Y:-:Set a stateful mark from the `connmark` group.
+extra-manpage: firehol-connmark46.5
+extra-manpage: firehol-connmark4.5
+extra-manpage: firehol-connmark6.5
+  -->
     <h3 id="description-7">
       <a href="#description-7">DESCRIPTION</a>
     </h3>
-    <p>The <code>connmark</code> helper command sets a mark on a whole connection. It applies to both directions.</p>
+    <p>Marks on packets can be matched by traffic shaping, routing, and firewall rules for controlling traffic.</p>
+    <blockquote>
+      <p><strong>Note</strong> Behaviour changed significantly in FireHOL v3 compared to earlier versions</p>
+    </blockquote>
+    <p>FireHOL uses iptables <code>masks</code> to break the single 32-bit integer mark value into smaller groups and allows you to set and match them independently. The <code>markdef</code> group definitions to set this up are found in <code>firehol-defaults.conf</code></p>
+    <p>The <code>connmark</code> helper command sets values within the <code>connmark</code> group. You can set <em>value</em> between 0 (no mark) and <code>size</code>-1. The default size for <code>connmark</code> is 64, so 63 is highest <em>value</em> possible. The default <code>connmark</code> types are <code>stateful</code>+<code>permanent</code>, meaning the initial match will only be done on <code>NEW</code> packets and the mark will be restored to all packets in the connection.</p>
+    <p>The <em>chain</em> will be used to find traffic to mark. It can be any of the iptables(8) built in chains belonging to the <code>mangle</code> table. The chain names are: INPUT, FORWARD, OUTPUT, PREROUTING and POSTROUTING. The names are case-sensitive.</p>
+    <p>The <em>rule-params</em> define a set of rule parameters to match the traffic that is to be marked within the chosen chain. See <a href="#firehol-params5">firehol-params(5)</a> for more details.</p>
+    <p>Any <code>connmark</code> commands must be declared before the first router or interface.</p>
     <blockquote>
       <p>
         <strong>Note</strong>
       </p>
-      <p>To set a mark on packets matching particular rules, regardless of any connection, see <a href="#firehol-mark5">firehol-mark(5)</a>.</p>
+      <p>If you want to do policy based routing based on iptables(8) marks, you will need to disable the Root Path Filtering on the interfaces involved (rp_filter in sysctl).</p>
+      <p>FireQOS will read the FireHOL mark definitions and set up suitable offsets and marks for the various groups. If you are using a different tool, you should look at the emitted firewall to determine the final masks and values to use.</p>
     </blockquote>
-    <p>The <em>value</em> is the mark value to set (a 32 bit integer). If you specify <code>save</code> then the mark on the matched packet will be turned into a connmark. If you specify <code>restore</code> then the matched packet will have its mark set to the current connmark.</p>
-    <p>The <em>chain</em> will be used to find traffic to mark. It can be any of the iptables(8) built in chains belonging to the <code>mangle</code> table. The chain names are: INPUT, FORWARD, OUTPUT, PREROUTING and POSTROUTING. The names are case-sensitive.</p>
-    <p>The <em>rule-params</em> define a set of rule parameters to match the traffic that is to be marked within the chosen chain. See <a href="#firehol-params5">firehol-params(5)</a> for more details.</p>
-    <p>Any <code>connmark</code> commands will affect all traffic matched. They must be declared before the first router or interface.</p>
     <h3 id="examples-3">
       <a href="#examples-3">EXAMPLES</a>
     </h3>
-    <p>Consider a scenario with 3 ethernet ports, where eth0 is on the local LAN, eth1 connects to ISP 'A' and eth2 to ISP 'B'. To ensure traffic leaves via the same ISP as it arrives from you can mark the traffic.</p>
-    <pre><code> # mark connections when they arrive from the ISPs
- connmark 1 PREROUTING inface eth1
- connmark 2 PREROUTING inface eth2
+    <pre><code> # mark with 1, packets sent by the local machine
+ connmark 1 OUTPUT
 
- # restore the mark (from the connmark) when packets arrive from the LAN
- connmark restore OUTPUT
- connmark restore PREROUTING inface eth0</code></pre>
-    <p>It is then possible to use the commands from iproute2 such as ip(8), to pick the correct routing table based on the mark on the packets.</p>
+ # mark with 2, packets routed by the local machine
+ connmark 2 FORWARD
+
+ # mark with 3, packets routed by the local machine, sent from
+ #              192.0.2.2 destined for port TCP/25 of 198.51.100.1
+ connmark 3 FORWARD proto tcp dport 25 dst 198.51.100.1 src 192.0.2.2</code></pre>
     <h3 id="see-also-7">
       <a href="#see-also-7">SEE ALSO</a>
     </h3>
@@ -2173,12 +2179,15 @@ contents-table:helper:connmark:keyword-firehol-connmark:Y:-:Set a stateful mark 
       <li><a href="#firehol1">firehol(1)</a> - FireHOL program</li>
       <li><a href="#firehol.conf5">firehol.conf(5)</a> - FireHOL configuration</li>
       <li><a href="#firehol-params5">firehol-params(5)</a> - optional rule parameters</li>
-      <li><a href="#firehol-mark5">firehol-mark(5)</a> - mark traffic for traffic shaping tools</li>
+      <li><a href="#firehol-connmark5">firehol-mark(5)</a> - set a stateful mark from the usermark group</li>
       <li><a href="http://ipset.netfilter.org/iptables.man.html">iptables(8)</a> - administration tool for IPv4 firewalls</li>
       <li><a href="http://ipset.netfilter.org/ip6tables.man.html">ip6tables(8)</a> - administration tool for IPv6 firewalls</li>
       <li>ip(8) - show / manipulate routing, devices, policy routing and tunnels</li>
       <li>
         <a href="http://firehol.org/">FireHOL Website</a>
+      </li>
+      <li>
+        <a href="https://github.com/firehol/firehol/wiki/Working-with-MARKs">Working With Marks Wiki Page</a>
       </li>
       <li>
         <a href="http://firehol.org/firehol-manual.pdf">FireHOL Online PDF Manual</a>
@@ -2859,6 +2868,13 @@ contents-table:helper:iptables ip6tables:keyword-firehol-ip6tables:N:*all forbid
     </blockquote>
     <p>You should not use <code>/sbin/iptables</code> or <code>/sbin/ip6tables</code> directly in a FireHOL configuration as they will run before FireHOL activates its firewall. This means that the commands are applied to the previously running firewall, not the new firewall, and will be lost when the new firewall is activated.</p>
     <p>The <code>iptables</code> and <code>ip6tables</code> helpers are provided to allow you to hook in commands safely.</p>
+    <p>When using the <code>-t</code> option to specify a table, ensure this is the first option to <code>iptables</code>, otherwise "fast activation" will fail with an error message such as:</p>
+    <pre><code>iptables-restore: The -t option cannot be used in iptables-restore</code></pre>
+    <h3 id="examples-7">
+      <a href="#examples-7">EXAMPLES</a>
+    </h3>
+    <p>Fix LXC DHCP on same host:</p>
+    <pre><code>iptables -t mangle -A POSTROUTING -p udp --dport 68 -j CHECKSUM --checksum-fill</code></pre>
     <h3 id="see-also-13">
       <a href="#see-also-13">SEE ALSO</a>
     </h3>
@@ -2920,8 +2936,8 @@ extra-manpage: firehol-ipuntrap6.5
     <p><code>iptrap</code> and <code>ipuntrap</code> cannot setup both IPv4 and IPv6 traps with one call. The reason is that the <code>ipset</code> can either be IPv4 or IPv6.</p>
     <p>Both helpers will create the <code>ipset</code> specified, if that ipset is not already created by other statements. When the ipset is created by the <code>iptrap</code> helper, the ipset will not be reset (emptied) when the firewall is restarted.</p>
     <p>The ipset options used when these helpers create ipsets can be controlled with the variable IPTRAP_DEFAULT_IPSET_OPTIONS.</p>
-    <h3 id="examples-7">
-      <a href="#examples-7">EXAMPLES</a>
+    <h3 id="examples-8">
+      <a href="#examples-8">EXAMPLES</a>
     </h3>
     <pre><code> # Example: mini-IDS
  # add to the ipset `trap` for an hour (3600 seconds) all IPs from all packets
@@ -2993,8 +3009,8 @@ contents-table:helper:mac:keyword-firehol-mac-helper:Y:*all forbidden*:Restricts
       </p>
       <p>This command restricts an IP to a particular MAC address. The same MAC address is permitted send traffic with a different IP.</p>
     </blockquote>
-    <h3 id="examples-8">
-      <a href="#examples-8">EXAMPLES</a>
+    <h3 id="examples-9">
+      <a href="#examples-9">EXAMPLES</a>
     </h3>
     <pre><code>mac 192.0.2.1    00:01:01:00:00:e6
 mac 198.51.100.1 00:01:01:02:aa:e8</code></pre>
@@ -3022,39 +3038,41 @@ mac 198.51.100.1 00:01:01:02:aa:e8</code></pre>
     <h3 id="name-16">
       <a href="#name-16">NAME</a>
     </h3>
-    <p>firehol-mark - mark traffic for traffic shaping tools</p>
+    <p>firehol-mark - set a stateful mark from the usermark group</p>
     <h3 id="synopsis-15">
       <a href="#synopsis-15">SYNOPSIS</a>
     </h3>
-    <p>
-      <em>Warning - this manual page is out of date for nightly build/v3 behaviour</em>
-    </p>
-    <p>mark <em>value</em> <em>chain</em> <em>rule-params</em></p>
+    <p>{ mark | mark46 } <em>value</em> <em>chain</em> <em>rule-params</em></p>
+    <p>mark4 <em>value</em> <em>chain</em> <em>rule-params</em></p>
+    <p>mark6 <em>value</em> <em>chain</em> <em>rule-params</em></p>
 <!--
 contents-table:helper:mark:keyword-firehol-mark-helper:Y:-:Set a stateful mark from the `usermark` group.
+extra-manpage: firehol-mark46.5
+extra-manpage: firehol-mark4.5
+extra-manpage: firehol-mark6.5
   -->
     <h3 id="description-16">
       <a href="#description-16">DESCRIPTION</a>
     </h3>
-    <p>The <code>mark</code> helper command sets a mark on packets that can be matched by traffic shaping tools for controlling the traffic.</p>
+    <p>Marks on packets can be matched by traffic shaping, routing, and firewall rules for controlling traffic.</p>
     <blockquote>
-      <p>
-        <strong>Note</strong>
-      </p>
-      <p>To set a mark on whole connections, see <a href="#firehol-connmark5">firehol-connmark(5)</a>. There is also a <code>mark</code> parameter which allows matching marks within individual rules (see <a href="#mark">firehol-params(5)</a>).</p>
+      <p><strong>Note</strong> Behaviour changed significantly in FireHOL v3 compared to earlier versions</p>
+      <p>There is also a <code>mark</code> parameter which allows matching marks within individual rules (see <a href="#mark">firehol-params(5)</a>).</p>
     </blockquote>
-    <p>The <em>value</em> is the mark value to set (a 32 bit integer).</p>
+    <p>FireHOL uses iptables <code>masks</code> to break the single 32-bit integer mark value into smaller groups and allows you to set and match them independently. The <code>markdef</code> group definitions to set this up are found in <code>firehol-defaults.conf</code></p>
+    <p>The <code>mark</code> helper command sets values within the <code>usermark</code> group. You can set <em>value</em> between 0 (no mark) and <code>size</code>-1. The default size for <code>usermark</code> is 128, so 127 is highest <em>value</em> possible. The default <code>usermark</code> types are <code>stateful</code>+<code>permanent</code>, meaning the initial match will only be done on <code>NEW</code> packets and the mark will be restored to all packets in the connection.</p>
     <p>The <em>chain</em> will be used to find traffic to mark. It can be any of the iptables(8) built in chains belonging to the <code>mangle</code> table. The chain names are: INPUT, FORWARD, OUTPUT, PREROUTING and POSTROUTING. The names are case-sensitive.</p>
     <p>The <em>rule-params</em> define a set of rule parameters to match the traffic that is to be marked within the chosen chain. See <a href="#firehol-params5">firehol-params(5)</a> for more details.</p>
-    <p>Any <code>mark</code> commands will affect all traffic matched. They must be declared before the first router or interface.</p>
+    <p>Any <code>mark</code> commands must be declared before the first router or interface.</p>
     <blockquote>
       <p>
         <strong>Note</strong>
       </p>
       <p>If you want to do policy based routing based on iptables(8) marks, you will need to disable the Root Path Filtering on the interfaces involved (rp_filter in sysctl).</p>
+      <p>FireQOS will read the FireHOL mark definitions and set up suitable offsets and marks for the various groups. If you are using a different tool, you should look at the emitted firewall to determine the final masks and values to use.</p>
     </blockquote>
-    <h3 id="examples-9">
-      <a href="#examples-9">EXAMPLES</a>
+    <h3 id="examples-10">
+      <a href="#examples-10">EXAMPLES</a>
     </h3>
     <pre><code> # mark with 1, packets sent by the local machine
  mark 1 OUTPUT
@@ -3072,12 +3090,15 @@ contents-table:helper:mark:keyword-firehol-mark-helper:Y:-:Set a stateful mark f
       <li><a href="#firehol1">firehol(1)</a> - FireHOL program</li>
       <li><a href="#firehol.conf5">firehol.conf(5)</a> - FireHOL configuration</li>
       <li><a href="#firehol-params5">firehol-params(5)</a> - optional rule parameters</li>
-      <li><a href="#firehol-connmark5">firehol-connmark(5)</a> - set a stateful mark on a connection</li>
+      <li><a href="#firehol-connmark5">firehol-connmark(5)</a> - set a stateful mark from the connmark group</li>
       <li><a href="http://ipset.netfilter.org/iptables.man.html">iptables(8)</a> - administration tool for IPv4 firewalls</li>
       <li><a href="http://ipset.netfilter.org/ip6tables.man.html">ip6tables(8)</a> - administration tool for IPv6 firewalls</li>
       <li>ip(8) - show / manipulate routing, devices, policy routing and tunnels</li>
       <li>
         <a href="http://firehol.org/">FireHOL Website</a>
+      </li>
+      <li>
+        <a href="https://github.com/firehol/firehol/wiki/Working-with-MARKs">Working With Marks Wiki Page</a>
       </li>
       <li>
         <a href="http://firehol.org/firehol-manual.pdf">FireHOL Online PDF Manual</a>
@@ -3126,8 +3147,8 @@ contents-table:helper:masquerade:keyword-firehol-masquerade:Y:-:Change the sourc
     </h3>
     <p>Masquerading is a special form of Source NAT (SNAT) that changes the source of requests when they go out and replaces their original source when they come in. This way a Linux host can become an Internet router for a LAN of clients having unroutable IP addresses. Masquerading takes care to re-map IP addresses and ports as required.</p>
     <p>Masquerading is expensive compare to SNAT because it checks the IP address of the outgoing interface every time for every packet. If your host has a static IP address you should generally prefer SNAT.</p>
-    <h3 id="examples-10">
-      <a href="#examples-10">EXAMPLES</a>
+    <h3 id="examples-11">
+      <a href="#examples-11">EXAMPLES</a>
     </h3>
     <pre><code>
  # Before any interface or router
@@ -3376,8 +3397,8 @@ for this service.
 `ip_list_hash_size` is calculated by kernel when the module
 is loaded to be bigger and up to twice `ip_list_tot`.</code></pre>
     <p>Once you have the balancer running, you can find its lookup tables in <code>/proc/net/xt_recent/</code>. There you will find files starting with the <em>id</em> parameter, one file for every alternative of the NAT rule.</p>
-    <h3 id="examples-11">
-      <a href="#examples-11">EXAMPLES</a>
+    <h3 id="examples-12">
+      <a href="#examples-12">EXAMPLES</a>
     </h3>
     <pre><code>
  # Port forwarding HTTP
@@ -3902,8 +3923,8 @@ contents-table:subcommand:protection:keyword-firehol-protection:N:*all forbidden
         <p>Drops all TCP packets that have illegal combinations of TCP flags set.</p>
       </dd>
     </dl>
-    <h4 id="examples-12">
-      <a href="#examples-12">EXAMPLES</a>
+    <h4 id="examples-13">
+      <a href="#examples-13">EXAMPLES</a>
     </h4>
     <pre><code>protection bad-packets</code></pre>
     <h3 id="flood-protection-types">
@@ -3925,8 +3946,8 @@ contents-table:subcommand:protection:keyword-firehol-protection:N:*all forbidden
         <p>Be careful to not set the rate too low as the rule is applied to all connections regardless of their final result (rejected, dropped, established, etc).</p>
       </dd>
     </dl>
-    <h4 id="examples-13">
-      <a href="#examples-13">EXAMPLES</a>
+    <h4 id="examples-14">
+      <a href="#examples-14">EXAMPLES</a>
     </h4>
     <pre><code>protection all-floods 90/sec 40</code></pre>
     <h3 id="client-limiting-types">
@@ -3945,8 +3966,8 @@ contents-table:subcommand:protection:keyword-firehol-protection:N:*all forbidden
         <p>Allow up to a rate of new connections per client (implemented with <code>hashlimit</code> with fixed type=<em>upto</em> and mode=<em>srcip</em>).</p>
       </dd>
     </dl>
-    <h4 id="examples-14">
-      <a href="#examples-14">EXAMPLES</a>
+    <h4 id="examples-15">
+      <a href="#examples-15">EXAMPLES</a>
     </h4>
     <p>Limit the number of concurrent connections to 10 per client</p>
     <pre><code>protection connlimit 10 mask 32</code></pre>
@@ -4015,8 +4036,8 @@ contents-table:helper:transparent_proxy:keyword-firehol-transparent_proxy:Y:*see
     <p>The <em>rule-params</em> define a set of rule parameters to define the traffic that is to be proxied. See <a href="#firehol-params5">firehol-params(5)</a> for more details.</p>
     <p>For traffic destined for the firewall host or passing through the firewall, do not use the <code>outface</code> parameter because the rules are applied before the routing decision and so the outgoing interface will not be known.</p>
     <p>An empty <em>user</em> string ("") disables caching of locally-generated traffic. Otherwise, traffic starting from the firewall is captured, except that traffic generated by the local user(s) <em>user</em>. The <code>inface</code>, <code>outface</code> and <code>src</code> <em>rule-params</em> are all ignored for locally-generated traffic.</p>
-    <h3 id="examples-15">
-      <a href="#examples-15">EXAMPLES</a>
+    <h3 id="examples-16">
+      <a href="#examples-16">EXAMPLES</a>
     </h3>
     <pre><code>
 transparent_proxy 80 3128 squid inface eth0 src 192.0.2.0/24
@@ -4210,8 +4231,8 @@ extra-manpage: firehol-route6.5
       <p>The default <code>server</code> inherits its behaviour from the enclosing interface or router.</p>
       <p>The same rules apply to the variations of <code>route</code>.</p>
     </blockquote>
-    <h3 id="examples-16">
-      <a href="#examples-16">EXAMPLES</a>
+    <h3 id="examples-17">
+      <a href="#examples-17">EXAMPLES</a>
     </h3>
     <pre><code>server smtp accept
 
@@ -8583,8 +8604,8 @@ extra-manpage: firehol-synproxy6.5
         <p>Next you will need to exclude you lan IPs by adding <code>src not "${UNROUTABLE_IPS}"</code> (or any other network you know you use) to the synproxy statement.</p>
       </li>
     </ol>
-    <h3 id="examples-17">
-      <a href="#examples-17">EXAMPLES</a>
+    <h3 id="examples-18">
+      <a href="#examples-18">EXAMPLES</a>
     </h3>
     <p>Protect a web server running on the firewall with IP 1.2.3.4, from clients on eth0:</p>
     <pre><code>ipv4 synproxy input inface eth0 dst 1.2.3.4 dport 80 accept
@@ -8679,8 +8700,8 @@ contents-table:helper:tcpmss:keyword-firehol-tcpmss:Y:*all forbidden*:Set the MS
     <p>A numeric <em>mss</em> will set MSS of TCP connections to the value given. Using the word <code>auto</code> will set the MSS to the MTU of the outgoing interface minus 40 (clamp-mss-to-pmtu).</p>
     <p>If used within a <code>router</code> or <code>interface</code> definition the MSS will be applied to outgoing traffic on the <code>outface</code>(s) of the router or interface.</p>
     <p>If used before any router or interface definitions it will be applied to all traffic passing through the firewall. If <em>if-list</em> is given, the MSS will be applied only to those interfaces.</p>
-    <h3 id="examples-18">
-      <a href="#examples-18">EXAMPLES</a>
+    <h3 id="examples-19">
+      <a href="#examples-19">EXAMPLES</a>
     </h3>
     <pre><code>
 tcpmss auto
@@ -8738,8 +8759,8 @@ contents-table:helper:tos:keyword-firehol-tos-helper:Y:-:Set the Type of Service
     <p>The <em>chain</em> will be used to find traffic to mark. It can be any of the iptables(8) built in chains belonging to the <code>mangle</code> table. The chain names are: INPUT, FORWARD, OUTPUT, PREROUTING and POSTROUTING. These names are case-sensitive.</p>
     <p>The <em>rule-params</em> define a set of rule parameters to match the traffic that is to be marked within the chosen chain. See <a href="#firehol-params5">firehol-params(5)</a> for more details.</p>
     <p>Any <code>tos</code> commands will affect all traffic matched. They must be declared before the first <code>router</code> or <code>interface</code>.</p>
-    <h3 id="examples-19">
-      <a href="#examples-19">EXAMPLES</a>
+    <h3 id="examples-20">
+      <a href="#examples-20">EXAMPLES</a>
     </h3>
     <pre><code>
  # set TOS to 16, packets sent by the local machine

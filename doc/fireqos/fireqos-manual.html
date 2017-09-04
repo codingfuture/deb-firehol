@@ -16,7 +16,7 @@
       <h1 class="title">FireQOS Reference</h1>
       <h2 class="author">Copyright (c) 2013-2017 Costa Tsaousis <a href="mailto:costa@firehol.org">costa@firehol.org</a></h2>
       <h2 class="author">Copyright (c) 2013-2017 Phil Whineray <a href="mailto:phil@firehol.org">phil@firehol.org</a></h2>
-      <h3 class="date">Version 3.1.3 (Built 17 Feb 2017)</h3>
+      <h3 class="date">Version 3.1.4 (Built 20 Aug 2017)</h3>
     </div>
     <div id="TOC">
       <ul>
@@ -1382,7 +1382,9 @@ match proto tcp,udp syn</code></pre>
     </h4>
     <p>Match an iptables(8) MARK. This works the same way it works for FireHOL. FireHOL and FireQOS share the same marks and their masks.</p>
     <p>Matching iptables(8) MARKs do not work on input interfaces. You can use them only on output. The IFB devices that are used for shaping inbound traffic do not have any iptables hooks to allow matching MARKs. If you try it, FireQOS will attempt to do it, but currently you will get an error from the tc(8) command executed or they will be silently ignored by it.</p>
-    <p>On openwrt there is a module called <code>act_commark</code> that will enable this feature.</p>
+    <p>On some Linux distributions (e.g. OpenWRT) there is a module called <code>act_commark</code> that will enable this feature. Set this within your <code>fireqos.conf</code> to enable it:</p>
+    <pre><code>FIREQOS_CONNMARK_RESTORE="act_connmark"</code></pre>
+    <p>Also note that matching marks requires a suitably configured kernel (with <code>CONFIG_CLS_U32_MARK=y</code>). There is no error if the kernel is not configured correctly; it just silently drops the rules. For details see <a href="https://github.com/firehol/firehol/issues/231">this error report</a>.</p>
     <h4 id="ports-sports-dports">
       <a href="#ports-sports-dports">ports, sports, dports</a>
     </h4>
