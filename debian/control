@@ -10,7 +10,7 @@ Build-Depends-Indep:
  kmod, iptables, iproute2, procps, ipset, iprange (>=1.0.4), iputils-ping,
  traceroute, curl, gawk, unzip, jq, graphviz, git, nfacct, screen, tcpdump,
  wget, whois
-Standards-Version: 3.9.6
+Standards-Version: 3.9.8
 Homepage: http://firehol.org
 Vcs-Git: git://git@github.com:codingfuture/deb-firehol.git
 Vcs-Browser: https://github.com/codingfuture/deb-firehol
@@ -21,8 +21,8 @@ Depends: ${misc:Depends}, lsb-base, kmod, iptables, iproute2, tcpdump, procps,
  ipset, iprange (>=1.0.4), unzip, jq, git, nfacct, screen, tcpdump,
  wget, whois
 Suggests: firehol-doc (= ${binary:Version}), ulogd2, graphviz
-Replaces: fireqos
-Conflicts: fireqos
+Replaces: fireqos, firehol-tools, firehol-common
+Conflicts: fireqos, firehol-tools, firehol-common
 Provides: fireqos
 Description: A language (and a program to run it) which builds secure,
  stateful firewalls from easy to understand, human-readable configurations. The
