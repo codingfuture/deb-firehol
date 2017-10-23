@@ -16,7 +16,7 @@
       <h1 class="title">FireHOL Reference</h1>
       <h2 class="author">Copyright (c) 2002-2017 Costa Tsaousis <a href="mailto:costa@firehol.org">costa@firehol.org</a></h2>
       <h2 class="author">Copyright (c) 2012-2017 Phil Whineray <a href="mailto:phil@firehol.org">phil@firehol.org</a></h2>
-      <h3 class="date">Version 3.1.4 (Built 20 Aug 2017)</h3>
+      <h3 class="date">Version 3.1.5 (Built 17 Sep 2017)</h3>
     </div>
     <div id="TOC">
       <ul>
@@ -985,7 +985,9 @@ make install</code></pre>
           <td align="left">Put matching traffic into the specified traffic shaping class.</td>
         </tr>
         <tr class="even">
-          <td align="left">[connmark][keyword-firehol-connmark-helper]</td>
+          <td align="left">
+            <a href="#firehol-connmark5">connmark</a>
+          </td>
           <td align="center">Y</td>
           <td align="left">-</td>
           <td align="left">Set a stateful mark from the <code>connmark</code> group.</td>
@@ -2136,7 +2138,7 @@ client smtp accept log "mail packet" src 192.0.2.1</code></pre>
     <p>connmark4 <em>value</em> <em>chain</em> <em>rule-params</em></p>
     <p>connmark6 <em>value</em> <em>chain</em> <em>rule-params</em></p>
 <!--
-contents-table:helper:connmark:keyword-firehol-connmark-helper:Y:-:Set a stateful mark from the `connmark` group.
+contents-table:helper:connmark:keyword-firehol-connmark:Y:-:Set a stateful mark from the `connmark` group.
 extra-manpage: firehol-connmark46.5
 extra-manpage: firehol-connmark4.5
 extra-manpage: firehol-connmark6.5
@@ -2179,7 +2181,7 @@ extra-manpage: firehol-connmark6.5
       <li><a href="#firehol1">firehol(1)</a> - FireHOL program</li>
       <li><a href="#firehol.conf5">firehol.conf(5)</a> - FireHOL configuration</li>
       <li><a href="#firehol-params5">firehol-params(5)</a> - optional rule parameters</li>
-      <li><a href="#firehol-connmark5">firehol-mark(5)</a> - set a stateful mark from the usermark group</li>
+      <li>[firehol-mark(5)][keyword-firehol-mark] - set a stateful mark from the usermark group</li>
       <li><a href="http://ipset.netfilter.org/iptables.man.html">iptables(8)</a> - administration tool for IPv4 firewalls</li>
       <li><a href="http://ipset.netfilter.org/ip6tables.man.html">ip6tables(8)</a> - administration tool for IPv6 firewalls</li>
       <li>ip(8) - show / manipulate routing, devices, policy routing and tunnels</li>
