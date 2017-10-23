@@ -1,3 +1,10 @@
+firehol (3.1.5-cftrusty1) trusty; urgency=medium
+
+  * New upstream version 3.1.5
+  * Added missing dependencies
+
+ -- Andrey Galkin <andrey@futoin.org>  Mon, 23 Oct 2017 12:11:20 +0300
+
 firehol (3.1.4-cftrusty1) trusty; urgency=medium
 
   * New upstream version 3.1.4
