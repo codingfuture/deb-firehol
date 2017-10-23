@@ -1,3 +1,9 @@
+firehol (3.1.5-cftrusty2) trusty; urgency=medium
+
+  * Added conflict/replace of firehol-common & firehol-tools
+
+ -- Andrey Galkin <andrey@futoin.org>  Mon, 23 Oct 2017 12:33:15 +0300
+
 firehol (3.1.5-cftrusty1) trusty; urgency=medium
 
   * New upstream version 3.1.5
