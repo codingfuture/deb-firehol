@@ -7,8 +7,9 @@ Build-Depends-Indep:
  libxml2-utils,
  texlive-base, texlive-latex-recommended, texlive-fonts-recommended, lmodern,
  pandoc,
- kmod, iptables, iproute2, procps, ipset, iprange, iputils-ping,
- traceroute, curl, gawk
+ kmod, iptables, iproute2, procps, ipset, iprange (>=1.0.4), iputils-ping,
+ traceroute, curl, gawk, unzip, jq, graphviz, git, nfacct, screen, tcpdump,
+ wget, whois
 Standards-Version: 3.9.6
 Homepage: http://firehol.org
 Vcs-Git: git://git@github.com:codingfuture/deb-firehol.git
@@ -17,8 +18,9 @@ Vcs-Browser: https://github.com/codingfuture/deb-firehol
 Package: firehol
 Architecture: all
 Depends: ${misc:Depends}, lsb-base, kmod, iptables, iproute2, tcpdump, procps,
- ipset, iprange
-Suggests: firehol-doc (= ${binary:Version}), ulogd2
+ ipset, iprange (>=1.0.4), unzip, jq, git, nfacct, screen, tcpdump,
+ wget, whois
+Suggests: firehol-doc (= ${binary:Version}), ulogd2, graphviz
 Replaces: fireqos
 Conflicts: fireqos
 Provides: fireqos
