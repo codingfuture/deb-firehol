@@ -298,7 +298,11 @@ testargs = $(am__append_1) $(am__append_2) $(am__append_3) \
 TOOLS = \
   README.md \
   tools/clean-class \
+  tools/clean-filter \
   tools/clean-iptables \
+  tools/clean-qdisc \
+  tools/clean-rules \
+  tools/clean-table \
   tools/newns \
   unittest \
   update-audit

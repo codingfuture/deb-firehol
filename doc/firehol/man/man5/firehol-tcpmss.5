@@ -1,41 +1,54 @@
-.TH "firehol\-tcpmss" "5" "Built 17 Sep 2017" "FireHOL Reference" "3.1.5"
+.TH "firehol\-tos" "5" "Built 13 Aug 2018" "FireHOL Reference" "3.1.6"
 .nh
 .SH NAME
 .PP
-firehol\-tcpmss \- set the MSS of TCP SYN packets for routers
+firehol\-tos \- set the Type of Service (TOS) of packets
 .SH SYNOPSIS
 .PP
-tcpmss { \f[I]mss\f[] | auto } [\f[I]if\-list\f[]]
+tos \f[I]value\f[] \f[I]chain\f[] [\f[I]rule\-params\f[]]
 .SH DESCRIPTION
 .PP
-The \f[C]tcpmss\f[] helper command sets the MSS (Maximum Segment Size)
-of TCP SYN packets routed through the firewall.
-This can be used to overcome situations where Path MTU Discovery is not
-working and packet fragmentation is not possible.
+The \f[C]tos\f[] helper command sets the Type of Service (TOS) field in
+packet headers.
+.RS
 .PP
-A numeric \f[I]mss\f[] will set MSS of TCP connections to the value
-given.
-Using the word \f[C]auto\f[] will set the MSS to the MTU of the outgoing
-interface minus 40 (clamp\-mss\-to\-pmtu).
+\f[B]Note\f[]
 .PP
-If used within a \f[C]router\f[] or \f[C]interface\f[] definition the
-MSS will be applied to outgoing traffic on the \f[C]outface\f[](s) of
-the router or interface.
+There is also a \f[C]tos\f[] parameter which allows matching TOS values
+within individual rules (see firehol\-params(5)).
+.RE
 .PP
-If used before any router or interface definitions it will be applied to
-all traffic passing through the firewall.
-If \f[I]if\-list\f[] is given, the MSS will be applied only to those
-interfaces.
+The \f[I]value\f[] can be an integer number (decimal or hexadecimal) or
+one of the descriptive values accepted by iptables(8) (run
+\f[C]iptables\ \-j\ TOS\ \-\-help\f[] for a list).
+.PP
+The \f[I]chain\f[] will be used to find traffic to mark.
+It can be any of the iptables(8) built in chains belonging to the
+\f[C]mangle\f[] table.
+The chain names are: INPUT, FORWARD, OUTPUT, PREROUTING and POSTROUTING.
+These names are case\-sensitive.
+.PP
+The \f[I]rule\-params\f[] define a set of rule parameters to match the
+traffic that is to be marked within the chosen chain.
+See firehol\-params(5) for more details.
+.PP
+Any \f[C]tos\f[] commands will affect all traffic matched.
+They must be declared before the first \f[C]router\f[] or
+\f[C]interface\f[].
 .SH EXAMPLES
 .IP
 .nf
 \f[C]
 
-tcpmss\ auto
+\ #\ set\ TOS\ to\ 16,\ packets\ sent\ by\ the\ local\ machine
+\ tos\ 16\ OUTPUT
 
-tcpmss\ 500
+\ #\ set\ TOS\ to\ 0x10\ (16),\ packets\ routed\ by\ the\ local\ machine
+\ tos\ 0x10\ FORWARD
 
-tcpmss\ 500\ "eth1\ eth2\ eth3"
+\ #\ set\ TOS\ to\ Maximize\-Throughput\ (8),\ packets\ routed\ by\ the\ local
+\ #\ \ \ \ \ \ \ \ \ \ \ \ \ \ machine,\ destined\ for\ port\ TCP/25\ of\ 198.51.100.1
+\ tos\ Maximize\-Throughput\ FORWARD\ proto\ tcp\ dport\ 25\ dst\ 198.51.100.1
 \f[]
 .fi
 .SH SEE ALSO
@@ -44,17 +57,20 @@ firehol(1) \- FireHOL program
 .IP \[bu] 2
 firehol.conf(5) \- FireHOL configuration
 .IP \[bu] 2
-firehol\-interface(5) \- interface definition
+firehol\-params(5) \- optional rule parameters
 .IP \[bu] 2
-firehol\-router(5) \- router definition
+firehol\-tosfix(5) \- tosfix config helper
+.IP \[bu] 2
+iptables(8) (http://ipset.netfilter.org/iptables.man.html) \-
+administration tool for IPv4 firewalls
+.IP \[bu] 2
+ip6tables(8) (http://ipset.netfilter.org/ip6tables.man.html) \-
+administration tool for IPv6 firewalls
 .IP \[bu] 2
 FireHOL Website (http://firehol.org/)
 .IP \[bu] 2
 FireHOL Online PDF Manual (http://firehol.org/firehol-manual.pdf)
 .IP \[bu] 2
 FireHOL Online Documentation (http://firehol.org/documentation/)
-.IP \[bu] 2
-TCPMSS target in the iptables
-tutorial (https://www.frozentux.net/iptables-tutorial/iptables-tutorial.html#TCPMSSTARGET)
 .SH AUTHORS
 FireHOL Team.
