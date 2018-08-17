@@ -757,7 +757,9 @@ uninstall-am: uninstall-dochtmlDATA
 
 @MAINTAINER_MODE_TRUE@all-local: service-links
 
-@MAINTAINER_MODE_TRUE@service-links: $(top_srcdir)/sbin/firehol services-db.data
+@MAINTAINER_MODE_TRUE@service-links: services-db.data $(top_srcdir)/sbin/firehol \
+@MAINTAINER_MODE_TRUE@		$(top_srcdir)/sbin/services.common \
+@MAINTAINER_MODE_TRUE@		$(top_srcdir)/sbin/services.firehol
 @MAINTAINER_MODE_TRUE@	$(MKSERVICELINKS) service-links $+
 
 # Tell versions [3.59,3.63) of GNU make to not export all variables.

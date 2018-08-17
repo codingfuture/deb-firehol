@@ -299,14 +299,6 @@ Match all traffic (without modules or indirect)
 
     * all
 
-    Netfilter Modules
-
-    * 
-
-    Netfilter NAT Modules
-
-    * 
-
     Notes
 
     > Matches all traffic (all protocols, ports, etc), but does
