@@ -785,6 +785,8 @@ uninstall-man: uninstall-man1 uninstall-man5
 	uninstall-man1 uninstall-man5 uninstall-pdfDATA
 
 
+@ENABLE_FIREQOS_TRUE@@ENABLE_MAN_TRUE@$(MANUALMAN_GENERATED_INDIRECT): $(MANUALMAN_GENERATED)
+
 @MAINTAINER_MODE_TRUE@man/man1/%.1: %.1.md
 @MAINTAINER_MODE_TRUE@	$(MKDIR_P) man/man1
 @MAINTAINER_MODE_TRUE@	$(SED) -e '/^%/s/DATE/@PACKAGE_BUILT_DATE@/' -e '/^%/s/VERSION/@PACKAGE_VERSION@/' $< > tmp-manproc

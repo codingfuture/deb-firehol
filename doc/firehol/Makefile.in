@@ -831,7 +831,12 @@ uninstall-man: uninstall-man1 uninstall-man5
 	uninstall-man1 uninstall-man5 uninstall-pdfDATA
 
 
-@MAINTAINER_MODE_TRUE@firehol-services.5.md: $(top_srcdir)/sbin/firehol ../services-db.data ../service-links
+@ENABLE_FIREHOL_TRUE@@ENABLE_MAN_TRUE@$(MANUALMAN_GENERATED_INDIRECT): $(MANUALMAN_GENERATED)
+
+@MAINTAINER_MODE_TRUE@firehol-services.5.md: ../services-db.data ../service-links \
+@MAINTAINER_MODE_TRUE@		$(top_srcdir)/sbin/firehol \
+@MAINTAINER_MODE_TRUE@		$(top_srcdir)/sbin/services.common \
+@MAINTAINER_MODE_TRUE@		$(top_srcdir)/sbin/services.firehol
 @MAINTAINER_MODE_TRUE@	$(MKSERVICEMAN) firehol-services.5.md $+
 
 @MAINTAINER_MODE_TRUE@contents.md: *.1.md *.5.md contents.tpl
