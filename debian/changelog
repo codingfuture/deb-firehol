@@ -1,3 +1,9 @@
+firehol (3.1.6-cfxenial1) xenial; urgency=medium
+
+  * New upstream version 3.1.6
+
+ -- Andrey Galkin <andrey@futoin.org>  Fri, 17 Aug 2018 12:17:30 +0300
+
 firehol (3.1.5-cfxenial2) xenial; urgency=medium
 
   * Added conflict/replace of firehol-common & firehol-tools
