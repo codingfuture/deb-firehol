@@ -14,7 +14,6 @@ override_dh_auto_configure:
 
 override_dh_installinit:
 	dh_installinit --restart-after-upgrade
-	dh_installinit -p fireqos --restart-after-upgrade
 
 get-orig-source:
 	uscan --no-conf --download-current-version --verbose
