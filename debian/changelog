@@ -1,3 +1,9 @@
+firehol (3.1.6-cfxenial2) xenial; urgency=medium
+
+  * FIXED: missing firehol files in installation
+
+ -- Andrey Galkin <andrey@futoin.org>  Tue, 21 Aug 2018 12:43:24 +0300
+
 firehol (3.1.6-cfxenial1) xenial; urgency=medium
 
   * New upstream version 3.1.6
