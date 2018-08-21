@@ -8,4 +8,7 @@ sbin/update-ipsets usr/lib/firehol
 sbin/vnetbuild usr/lib/firehol
 sbin/install.config usr/lib/firehol
 sbin/functions.common usr/lib/firehol
+sbin/services.common usr/lib/firehol
+sbin/services.fireqos usr/lib/firehol
+sbin/services.firehol usr/lib/firehol
 
